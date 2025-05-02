@@ -1,0 +1,11 @@
+groups:
+- name: fraud-alerts
+  rules:
+  - alert: HighFraudProbability
+    expr: fraud_prediction_confidence > 0.85
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: "High fraud risk detected"
+      description: "Transaction {{ $labels.transaction_id }} has {{ $value }}% fraud probability"

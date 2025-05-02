@@ -1,0 +1,9 @@
+target_host: http://localhost:8000
+users:
+  - type: FraudDetectionUser
+    count: 100
+    spawn_rate: 10
+    test_duration: 5m
+thresholds:
+  max_response_time: 500ms
+  failure_rate: 1%

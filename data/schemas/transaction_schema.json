@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Transaction",
+  "type": "object",
+  "properties": {
+    "transaction_id": { "type": "string" },
+    "amount": {
+      "type": "number",
+      "minimum": 0
+    },
+    "oldbalanceOrg": {
+      "type": "number",
+      "minimum": 0
+    },
+    "newbalanceOrig": {
+      "type": "number",
+      "minimum": 0
+    },
+    "oldbalanceDest": {
+      "type": "number",
+      "minimum": 0
+    },
+    "newbalanceDest": {
+      "type": "number",
+      "minimum": 0
+    },
+    "transaction_type": {
+      "type": "string",
+      "enum": [ "CASH_IN", "CASH_OUT", "DEBIT", "PAYMENT", "TRANSFER" ]
+    }
+  },
+  "required": [ "transaction_id", "amount", "transaction_type" ]
+}

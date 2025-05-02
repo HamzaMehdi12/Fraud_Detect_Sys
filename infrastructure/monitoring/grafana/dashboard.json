@@ -1,0 +1,24 @@
+{
+  "title": "Fraud Detection Metrics",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Predictions Per Second",
+      "targets": [
+        {
+          "expr": "rate(fraud_predictions_total[1m])",
+          "legendFormat": "{{model_version}}"
+        }
+      ]
+    },
+    {
+      "type": "singlestat",
+      "title": "Fraud Rate",
+      "targets": [
+        {
+          "expr": "sum(fraud_predictions_total{result='fraud'}) / sum(fraud_predictions_total)"
+        }
+      ]
+    }
+  ]
+}

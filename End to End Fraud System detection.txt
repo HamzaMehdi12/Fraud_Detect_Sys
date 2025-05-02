@@ -1,0 +1,93 @@
+
+fraud-detection-system/
+│
+├── .env                        # Environment variables (API keys, DB credentials)
+├── .gitignore                  # Git ignore rules
+├── Dockerfile                  # API service containerization
+├── docker-compose.yml          # Local development services
+├── README.md                   # Project documentation
+│
+├── app/                        # API Service (FastAPI)
+│   ├── __init__.py
+│   ├── app.py                  # Main FastAPI application
+│   ├── ab_testing.py           # A/B Testing traffic routing
+│   ├── dependencies.py         # Security middleware, rate limiters
+│   ├── models.py               # Pydantic request/response models
+│   ├── utils/                  # Helper functions
+│   │   ├── feature_engineering.py
+│   │   ├── explainability.py   # SHAP/LIME explanations
+│   │   └── preprocessor.py     # Data transformations
+│   ├── monitoring.py           # Prometheus metrics exporter
+│   ├── logger.py               # Logging configuration
+│   └── requirements.txt        # Python dependencies
+│
+├── data/                       # Data Management
+│   ├── raw/                    # Raw transaction data (CSV/JSON)
+│   ├── processed/              # Processed data (Parquet)
+│   ├── backups/                # Daily backups
+│   └── schemas/                # Validation schemas
+│       └── transaction_schema.json
+│
+├── training/                   # ML Pipeline
+│   ├── __init__.py
+│   ├── config.py               # Training parameters
+│   ├── train.py                # Model training workflow
+│   ├── dataset.py              # Data loading/processing
+│   ├── evaluate.py             # Model evaluation metrics
+│   ├── validate_data.py        # Data quality checks
+│   ├── monitor.py              # Drift detection
+│   └── requirements.txt        # Training dependencies
+│
+├── models/                     # Model Management
+│   ├── registry/               # Versioned models
+│   │   ├── model_v1.0.0.pkl
+│   │   └── model_v1.1.0.pkl
+│   ├── monitoring/             # Drift detection
+│   │   ├── reference_data.parquet
+│   │   └── drift_detector.py
+│   └── candidates/             # A/B Test models
+│
+├── infrastructure/             # Infrastructure as Code
+│   ├── terraform/              # Cloud provisioning
+│   │   ├── modules/            # Reusable components
+│   │   └── environments/       # Env-specific configs
+│   │       ├── prod/
+│   │       └── staging/
+│   └── kubernetes/             # K8s manifests
+│       ├── deployments/
+│       ├── services/
+│       └── hpa/
+│
+├── .github/                    # CI/CD Automation
+│   └── workflows/
+│       ├── mlops.yml           # Training pipeline
+│       ├── security-scan.yml   # Vulnerability checks
+│       ├── deploy-prod.yml     # Production deployment
+│       └── ab-testing.yml      # A/B test rollout
+│
+├── scripts/                    # Operational Scripts
+│   ├── data_pipeline/          # ETL jobs
+│   │   ├── ingest.py           # Data ingestion
+│   │   └── cleanup.py          # Data archival
+│   ├── monitoring/             # Monitoring helpers
+│   │   ├── setup_alerts.py
+│   │   └── generate_reports.py
+│   └── deployment/             # Deployment utilities
+│       ├── rollback.sh
+│       └── health_check.py
+│
+├── tests/                      # Test Suite
+│   ├── unit/                   # Component tests
+│   │   ├── test_preprocessing.py
+│   │   └── test_models.py
+│   ├── integration/            # API tests
+│   │   └── test_api_endpoints.py
+│   └── performance/            # Load testing
+│       └── locustfile.py
+│
+└── docs/                       # Documentation
+    ├── architecture.md         # System design
+    ├── api-guide.md            # API documentation
+    └── runbooks/               # Operational guides
+        ├── incident_response.md
+        └── model_retraining.md

@@ -1,0 +1,32 @@
+# File: docker-compose.yml
+version: '3.8'
+
+services:
+  fraud-api:
+    build: ./app
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - MODEL_REGISTRY=./models/registry
+      - PROMETHEUS_PORT=8000
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./infrastructure/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+volumes:
+  grafana-data:
